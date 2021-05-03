@@ -1,9 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="utf-8"/>
 	<title>Ecwid QA Task2 Script</title>
+	<style type="text/css">
+		* {
+			border: 1px solid green;
+		}
+	</style>
 </head>
 <body>
 
+<div class="content-wrap"></div>
+
+<img class="pswp__img" src="https://d2j6dbq0eux0bg.cloudfront.net/images/6732144/2235908386.jpg" style="display: block;">
+
+<script type="text/javascript">
+
+Ecwid.OnAPILoaded.add(function() {
+
+	let products = {
+		engine: 333999307,
+		wheels: 333999308,
+		system: 348579009,
+		transm: 333999309,
+		hull: 333999310,
+	};
+
+	let img_src = 'http://pngimg.com/uploads/hummer/hummer_PNG12193.png';
+	let div = document.createElement('div');
+	let img = document.createElement('img');
+	img.setAttribute('src', img_src);
+	img.setAttribute('draggable', 'false');
+
+	Object.assign(div.style, {
+		position : 'fixed',
+		top : '50%',
+		left : '50%',
+	});
+
+	Object.assign(img.style, {
+		position : 'absolute',
+		top : '-165px',
+		left : '-325px',
+	});	
+
+	div.append(img);
+	document.body.append(div);
+
+	let quant = 0;
+	Ecwid.OnCartChanged.add(function(cart) {
+		quant = cart.productsQuantity;
+		if (quant >= 5) {
+			img.remove();
+			div.textContent = 'ВЫ СОБРАЛИ АВТОМОБИЛЬ!!!';
+		}
+	});
+
+	img.addEventListener("click", (e) => {
+		((e.layerX < 170 || e.layerX > 450) && e.layerY > 200)
+			? addCart('wheels')
+			: (e.layerX < 180 && (e.layerY < 180 && e.layerY > 130))
+				? addCart('engine')
+				: (e.layerX > 190 && (e.layerY < 190 && e.layerY > 55))
+					? addCart('hull')
+					: ((e.layerX > 190 && e.layerX < 440) && (e.layerY > 200 && e.layerY < 300))
+						? addCart('transm')
+						: ((e.layerX > 200 && e.layerX < 570) && e.layerY < 50)
+							? addCart('system')
+							: null;
+	});
+
+	function addCart(item) {
+		if (quant >= 5) return;
+		Ecwid.Cart.addProduct(products[item]);
+	};
+
+});
+</script>
 </body>
 </html>
