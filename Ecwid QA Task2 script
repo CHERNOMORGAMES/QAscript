@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Ecwid QA Task2 Script</title>
+	<title>Ecwid QA Task2 JavaScriptAPI</title>
 </head>
 <body>
 
@@ -43,7 +43,7 @@ Ecwid.OnAPILoaded.add(function() {
 	Ecwid.OnCartChanged.add(function(cart) {
 		quant = cart.productsQuantity;
 		if (quant >= 5) {
-			div.innerHTML = 'ВЫ СОБРАЛИ АВТОМОБИЛЬ!!!';
+			div.innerHTML = 'width:400px; padding:10px; display:block; border-radius: 10px; position: absolute; top: -50%; left: -150px; font-size: 24px; color: white; text-align: center; background-color: #8EC5FC;background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);';
 		}
 	});
 
@@ -67,6 +67,7 @@ Ecwid.OnAPILoaded.add(function() {
 	};
 
 });
+
 </script>
 </body>
 </html>
