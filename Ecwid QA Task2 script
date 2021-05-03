@@ -3,17 +3,9 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Ecwid QA Task2 Script</title>
-	<style type="text/css">
-		* {
-			border: 1px solid green;
-		}
 	</style>
 </head>
 <body>
-
-<div class="content-wrap"></div>
-
-<img class="pswp__img" src="https://d2j6dbq0eux0bg.cloudfront.net/images/6732144/2235908386.jpg" style="display: block;">
 
 <script type="text/javascript">
 
@@ -52,8 +44,7 @@ Ecwid.OnAPILoaded.add(function() {
 	Ecwid.OnCartChanged.add(function(cart) {
 		quant = cart.productsQuantity;
 		if (quant >= 5) {
-			img.remove();
-			div.textContent = 'ВЫ СОБРАЛИ АВТОМОБИЛЬ!!!';
+			div.innerHTML = 'ВЫ СОБРАЛИ АВТОМОБИЛЬ!!!';
 		}
 	});
 
