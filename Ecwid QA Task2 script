@@ -23,16 +23,15 @@ Ecwid.OnAPILoaded.add(function() {
 
 	let div = document.createElement('div');
 	div.setAttribute('id', 'qatask2');
-	let img = document.createElement('img');
-	img.setAttribute('src', img_src);
-	img.setAttribute('draggable', 'false');
-
 	Object.assign(div.style, {
 		position : 'fixed',
 		top : '50%',
 		left : '50%',
 	});
 
+	let img = document.createElement('img');
+	img.setAttribute('src', img_src);
+	img.setAttribute('draggable', 'false');
 	Object.assign(img.style, {
 		position : 'absolute',
 		top : '-165px',
@@ -41,7 +40,7 @@ Ecwid.OnAPILoaded.add(function() {
 	});	
 
 	let quant = 0;
-	
+
 	Ecwid.OnCartChanged.add((c) => quant = c.productsQuantity);
 	
 	const addCart = (item) => Ecwid.Cart.addProduct(products[item]);
@@ -80,7 +79,7 @@ Ecwid.OnAPILoaded.add(function() {
 
 	function final() {
 		div.innerHTML = '<div style="margin-left: -10px; width:300px; padding:7px; display:block; border-radius: 10px; position: absolute; top: -50%; left: -152px; font-size: 24px; color: white; text-align: center; background-color: #8EC5FC;background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);">Вы собрали автомобиль!</div>';
-		window.setTimeout( () => document.querySelector('#qatask2').remove(), 2000 )
+		window.setTimeout(() => document.querySelector('#qatask2').remove(), 2000)
 	};
 
 	div.append(img);
