@@ -9,8 +9,11 @@
 <script type="text/javascript">
 
 Ecwid.OnAPILoaded.add(function() {
+
 	Ecwid.Cart.clear();
-	let products = {
+	
+	const img_src = 'http://pngimg.com/uploads/hummer/hummer_PNG12193.png';
+	const products = {
 		engine: 333999307,
 		wheels: 333999308,
 		system: 348579009,
@@ -18,7 +21,6 @@ Ecwid.OnAPILoaded.add(function() {
 		hull: 333999310,
 	};
 
-	let img_src = 'http://pngimg.com/uploads/hummer/hummer_PNG12193.png';
 	let div = document.createElement('div');
 	let img = document.createElement('img');
 	img.setAttribute('src', img_src);
@@ -34,39 +36,54 @@ Ecwid.OnAPILoaded.add(function() {
 		position : 'absolute',
 		top : '-165px',
 		left : '-325px',
-		border: '2px dashed rgba(13,14,164,0.35)',
+		border : '2px dashed rgba(13,14,164,0.35)',
 	});	
 
-	div.append(img);
-	document.body.append(div);
-
 	let quant = 0;
-	Ecwid.OnCartChanged.add(function(cart) {
-		quant = cart.productsQuantity;
-		if (quant >= 5) {
-			div.innerHTML = '<div style="margin-left: -10px; width:300px; padding:7px; display:block; border-radius: 10px; position: absolute; top: -50%; left: -152px; font-size: 24px; color: white; text-align: center; background-color: #8EC5FC;background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);">Вы собрали автомобиль!</div>';
-		}
-	});
+	Ecwid.OnCartChanged.add((c) => quant = c.productsQuantity);
 
 	img.addEventListener("click", (e) => {
-		((e.layerX < 170 || e.layerX > 450) && e.layerY > 200)
+		if (quant >= 5) final();
+		const x = e.layerX;
+		const y = e.layerY;
+		( (x < 170 || x > 450) && y > 200 )
 			? addCart('wheels')
-			: (e.layerX < 180 && (e.layerY < 180 && e.layerY > 130))
+			: ( x < 180 && (y < 180 && y > 130) )
 				? addCart('engine')
-				: (e.layerX > 190 && (e.layerY < 190 && e.layerY > 55))
+				: ( x > 190 && (y < 190 && y > 55) )
 					? addCart('hull')
-					: ((e.layerX > 190 && e.layerX < 440) && (e.layerY > 200 && e.layerY < 300))
+					: ( (x > 190 && x < 440) && (y > 200 && y < 300) )
 						? addCart('transm')
-						: ((e.layerX > 200 && e.layerX < 570) && e.layerY < 50)
+						: ( (x > 200 && x < 570) && y < 50 )
 							? addCart('system')
 							: null;
+		decal(x-325, y-165, div);
 	});
 
 	function addCart(item) {
-		if (quant >= 5) return;
 		Ecwid.Cart.addProduct(products[item]);
 	};
 
+	function decal (x = 0, y = 0, targ = document.body) {
+		let dot = document.createElement('div');
+		Object.assign(dot.style, {
+			width : '10px',
+			height : '10px',
+			border : '2px dashed #00FFF5',
+			position : 'absolute',
+			top : `${y-9}px`,
+			left : `${x-8}px`,
+			zIndex : '99',
+		});
+		targ.append(dot);
+	};
+
+	function final() {
+		div.innerHTML = '<div style="margin-left: -10px; width:300px; padding:7px; display:block; border-radius: 10px; position: absolute; top: -50%; left: -152px; font-size: 24px; color: white; text-align: center; background-color: #8EC5FC;background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);">Вы собрали автомобиль!</div>';
+	};
+
+	div.append(img);
+	document.body.append(div);
 });
 
 </script>
