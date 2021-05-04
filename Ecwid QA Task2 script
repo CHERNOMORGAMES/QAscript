@@ -40,7 +40,10 @@ Ecwid.OnAPILoaded.add(function() {
 	});	
 
 	let quant = 0;
+	
 	Ecwid.OnCartChanged.add((c) => quant = c.productsQuantity);
+	
+	const addCart = (item) => Ecwid.Cart.addProduct(products[item]);
 
 	img.addEventListener("click", (e) => {
 		if (quant >= 5) final();
@@ -59,10 +62,6 @@ Ecwid.OnAPILoaded.add(function() {
 							: null;
 		decal(x-325, y-165, div);
 	});
-
-	function addCart(item) {
-		Ecwid.Cart.addProduct(products[item]);
-	};
 
 	function decal (x = 0, y = 0, targ = document.body) {
 		let dot = document.createElement('div');
