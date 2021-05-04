@@ -79,7 +79,7 @@ Ecwid.OnAPILoaded.add(function() {
 
 	function final() {
 		div.innerHTML = '<div style="margin-left: -10px; width:300px; padding:7px; display:block; border-radius: 10px; position: absolute; top: -50%; left: -152px; font-size: 24px; color: white; text-align: center; background-color: #8EC5FC;background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);">Вы собрали автомобиль!</div>';
-		window.setTimeout(() => document.querySelector('#qatask2').remove(), 2000)
+		setTimeout(() => document.querySelector('#qatask2').remove(), 2000)
 	};
 
 	div.append(img);
