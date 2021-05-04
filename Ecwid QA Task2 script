@@ -21,7 +21,7 @@ Ecwid.OnAPILoaded.add(function() {
 		hull: 333999310,
 	};
 
-	let div = document.createElement('div');
+	const div = document.createElement('div');
 	div.setAttribute('id', 'qatask2');
 	Object.assign(div.style, {
 		position : 'fixed',
@@ -29,7 +29,7 @@ Ecwid.OnAPILoaded.add(function() {
 		left : '50%',
 	});
 
-	let img = document.createElement('img');
+	const img = document.createElement('img');
 	img.setAttribute('src', img_src);
 	img.setAttribute('draggable', 'false');
 	Object.assign(img.style, {
