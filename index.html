@@ -11,10 +11,6 @@ body {background: black;}
 <body>
 
 <script type="text/javascript">
-
-//Ecwid.OnAPILoaded.add(function() {
-
-//	Ecwid.Cart.clear();
 	
 	const img_src = 'http://pngimg.com/uploads/hummer/hummer_PNG12193.png';
 	const products = {
@@ -42,30 +38,10 @@ body {background: black;}
 		left : '-325px',
 		border : '2px dashed rgba(13,14,164,0.35)',
 	});	
-/*
-	let quant = 0;
 
-	Ecwid.OnCartChanged.add((c) => quant = c.productsQuantity);
-	
-	const addCart = (item) => Ecwid.Cart.addProduct(products[item]);
-*/
 	img.addEventListener("click", (e) => {
-		//if (quant >= 5) final();
 		const x = e.layerX;
 		const y = e.layerY;
-		/*
-		( (x < 170 || x > 450) && y > 200 )
-			? addCart('wheels')
-			: ( x < 180 && (y < 180 && y > 130) )
-				? addCart('engine')
-				: ( x > 190 && (y < 190 && y > 55) )
-					? addCart('hull')
-					: ( (x > 190 && x < 440) && (y > 200 && y < 300) )
-						? addCart('transm')
-						: ( (x > 200 && x < 570) && y < 50 )
-							? addCart('system')
-							: null;
-		*/
 		decal(x-325, y-165, div);
 	});
 
@@ -91,7 +67,6 @@ body {background: black;}
 
 	div.append(img);
 	document.body.append(div);
-//});
 
 </script>
 </body>
